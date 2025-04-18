@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(
   cors({
     // origin: "http://localhost:3000",
-    origin: "https://auth-app-frontend-iota.vercel.app/",
+    origin: "https://auth-app-frontend-iota.vercel.app",
     credentials: true,
   })
 );
