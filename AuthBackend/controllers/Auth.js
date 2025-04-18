@@ -8,7 +8,7 @@ const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 
 // const { request } = require("express");
 const jwt = require("jsonwebtoken");
-const { use } = require("react");
+// const { use } = require("react");
 const { options } = require("../routes/User");
 require("dotenv").config();
 
