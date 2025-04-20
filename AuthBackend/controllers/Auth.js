@@ -8,7 +8,6 @@ const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 
 // const { request } = require("express");
 const jwt = require("jsonwebtoken");
-// const { use } = require("react");
 const { options } = require("../routes/User");
 require("dotenv").config();
 
@@ -234,10 +233,9 @@ exports.sendOtp = async (req, res) => {
 
 exports.changePassword = async (req, res) => {
   try {
-    
     const userDetails = await User.findById(req.user.id);
-    console.log("user detailssssssss......",userDetails)
-    
+    console.log("user detailssssssss......", userDetails);
+
     const { newPassword, oldPassword } = req.body;
     console.log("oldPassword..........", oldPassword);
     const isPasswordMatch = await bcrypt.compare(
@@ -268,12 +266,15 @@ exports.changePassword = async (req, res) => {
 
     // send Notification Email
     try {
+      const emailSubject = "Password Updated Successfully";
+      const emailBody = passwordUpdated(
+        updateUserDetails.email,
+        `${updateUserDetails.firstName} ${updateUserDetails.lastName}`
+      ); 
       const emailResponse = await mailSender(
         updateUserDetails.email,
-        passwordUpdated(
-          updateUserDetails.email,
-          `Password updated successfully for ${updateUserDetails.firstName} ${updateUserDetails.lastName}`
-        )
+        emailSubject,
+        emailBody
       );
       console.log("Email sent successfully", emailResponse.response);
     } catch (error) {
