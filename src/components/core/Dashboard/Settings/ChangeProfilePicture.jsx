@@ -22,7 +22,6 @@ export default function ChangeProfilePicture() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
-    // console.log(file)
     if (file) {
       setImageFile(file)
       previewFile(file)
@@ -39,11 +38,9 @@ export default function ChangeProfilePicture() {
 
   const handleFileUpload = () => {
     try {
-      console.log("uploading...")
       setLoading(true)
       const formData = new FormData()
       formData.append("displayPicture", imageFile)
-      // console.log("formdata", formData)
       dispatch(updateDisplayPicture(token, formData)).then(() => {
         setLoading(false)
       })
@@ -57,44 +54,50 @@ export default function ChangeProfilePicture() {
       previewFile(imageFile)
     }
   }, [imageFile])
+
   return (
-    <>
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 text-richblack-5">
-        <div className="flex items-center gap-x-4">
-          <img
-            src={previewSource || user?.image}
-            alt={`profile-${user?.firstName}`}
-            className="aspect-square w-[78px] rounded-full object-cover"
-          />
-          <div className="space-y-2">
-            <p>Change Profile Picture</p>
-            <div className="flex flex-row gap-3">
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleFileChange}
-                className="hidden"
-                accept="image/png, image/gif, image/jpeg"
-              />
-              <button
-                onClick={handleClick}
-                disabled={loading}
-                className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
-              >
-                Select
-              </button>
-              <IconBtn
-                text={loading ? "Uploading..." : "Upload"}
-                onclick={handleFileUpload}
-              >
-                {!loading && (
-                  <FiUpload className="text-lg text-richblack-900" />
-                )}
-              </IconBtn>
-            </div>
-          </div>
-        </div>
+    <div className="flex flex-col gap-4 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 md:flex-row md:items-center md:justify-between md:gap-4 md:p-8 md:px-12 text-richblack-5">
+
+      {/* Profile Pic and Text */}
+      <div className="flex flex-col items-center gap-3 md:flex-row md:items-center md:gap-4">
+        <img
+          src={previewSource || user?.image}
+          alt={`profile-${user?.firstName}`}
+          className="aspect-square w-20 rounded-full object-cover md:w-[78px]"
+        />
+        <p className="text-center text-sm md:text-left md:text-base font-semibold">
+          Change Profile Picture
+        </p>
       </div>
-    </>
+
+      {/* Buttons */}
+      <div className="flex flex-col gap-3 md:flex-row md:items-center">
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          className="hidden"
+          accept="image/png, image/gif, image/jpeg"
+        />
+
+        <button
+          onClick={handleClick}
+          disabled={loading}
+          className="rounded-md bg-richblack-700 px-5 py-2 text-sm font-semibold text-richblack-50 transition-all duration-200 hover:bg-richblack-600"
+        >
+          Select
+        </button>
+
+        <IconBtn
+          text={loading ? "Uploading..." : "Upload"}
+          onclick={handleFileUpload}
+        >
+          {!loading && (
+            <FiUpload className="text-lg text-richblack-900" />
+          )}
+        </IconBtn>
+      </div>
+
+    </div>
   )
 }

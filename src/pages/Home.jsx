@@ -14,7 +14,7 @@ const Home = () => {
   const isLoggedIn = Boolean(token);
 
   return (
-    <div className="h-[calc(100vh-4rem)] overflow-hidden bg-richblack-900 flex flex-col justify-center items-center px-4 mt-0 text-center relative">
+    <div className="h-[calc(100vh-4rem)] overflow-hidden bg-richblack-900 flex flex-col  justify-center items-center px-4 mt-0 text-center relative ">
       {/* Gradient Blobs */}
       <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
         <div className="absolute w-96 h-96 rounded-full bg-gradient-to-br from-[#b298f565] to-[#758cfd94] opacity-50 blur-[100px] animate-blobGlow top-10 left-10 z-0 mix-blend-lighten shadow-[0_0_60px_40px_rgba(149,135,255,0.4)]"></div>
@@ -25,7 +25,7 @@ const Home = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="z-10 max-w-maxContent"
+        className="z-10 max-w-maxContent flex flex-col gap-6"
       >
         <h1 className="text-5xl md:text-6xl font-extrabold  mb-6 font-inter bg-gradient-to-b from-[#E65C00] to-[#F9D423] text-transparent bg-clip-text font-bold">
           {isLoggedIn

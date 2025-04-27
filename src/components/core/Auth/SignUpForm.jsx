@@ -2,12 +2,13 @@ import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { sendOtp } from "../../../services/operations/authAPI"
 import { setSignupData } from "../../../slices/authSlice"
 import { ACCOUNT_TYPE } from "../../../utils/constants"
 import Tab from "../../common/Tab"
+import { IoIosArrowRoundBack } from "react-icons/io"
 
 function SignupForm() {
   
@@ -202,6 +203,14 @@ function SignupForm() {
         >
           Create Account
         </button>
+        <div className="mt-6 flex items-center justify-between">
+                    <Link to="/">
+                      <p className="flex items-center gap-x-2 text-richblack-5">
+                        <IoIosArrowRoundBack />
+                        Back to Home
+                      </p>
+                    </Link>
+                  </div>
       </form>
     </div>
   )

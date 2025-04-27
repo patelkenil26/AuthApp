@@ -125,6 +125,9 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        xs: {'max': '420px'},  // or another width of your choice
+      },
       maxWidth: {
         maxContent: "1260px",
         maxContentTab: "650px"
